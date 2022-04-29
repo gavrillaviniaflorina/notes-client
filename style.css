@@ -1,0 +1,122 @@
+body {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 100px;
+    width: 70%;
+    margin: auto;
+    background-color: #F7ECDE;
+    font-family: 'Nunito', sans-serif;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    border-radius: 20px;
+    background-color: white;
+    height: 100%;
+    color: #54BAB9;
+}
+
+.sort {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    height: 100%;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-item {
+    border-radius: 20px;
+    width: 10%;
+    height: 60%;
+}
+
+.current-item {
+    background-color: #54BAB9;
+    color: white;
+}
+
+.add {
+    background-color: #54BAB9;
+    color: white;
+    text-align: center;
+}
+
+.main1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.note p {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.delete {
+    width: 40%;
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #54BAB9;
+    font-family: 'Nunito', sans-serif;
+}
+
+.main2 {
+    width: 70%;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.main2 h1 {
+    color: #54BAB9;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+}
+
+fieldset input {
+    margin-bottom: 30px;
+}
+
+.description {
+    height: 150px;
+}
+
+.main2 button {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+    height: 30px;
+    color: white;
+    background-color: #54BAB9;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 20px;
+}
+
+.discard {
+    background-color: red;
+}

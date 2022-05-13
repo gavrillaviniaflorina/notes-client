@@ -1,0 +1,28 @@
+.sign-up {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    width: 50%;
+    border-radius: 20px;
+    & input {
+        margin-bottom: 30px;
+    }
+    & .description {
+        height: 150px;
+    }
+    & button {
+        width: 50%;
+        margin: auto;
+        margin-bottom: 20px;
+        height: 30px;
+        color: white;
+        background-color: #54BAB9;
+        font-family: 'Nunito', sans-serif;
+        border-radius: 20px;
+    }
+    & .discard {
+        background-color: red;
+    }
+}

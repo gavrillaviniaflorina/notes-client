@@ -1,0 +1,20 @@
+.note {
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    text-align: center;
+    & p {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    & .delete {
+        width: 40%;
+        border-radius: 20px;
+        margin: auto;
+        margin-bottom: 20px;
+        color: white;
+        background-color: #54BAB9;
+        font-family: 'Nunito', sans-serif;
+    }
+}

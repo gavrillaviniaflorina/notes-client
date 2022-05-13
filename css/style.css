@@ -1,0 +1,169 @@
+.body {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+}
+
+.container {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr;
+  grid-gap: 100px;
+  background-color: #F7ECDE;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+}
+.profile .member {
+  width: 40px;
+  height: 40px;
+  fill: #54BAB9;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  border-radius: 20px;
+  background-color: white;
+  height: 100%;
+  color: #54BAB9;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+.nav .sort {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 100%;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav .nav-item {
+  border-radius: 10px;
+  width: 10%;
+  height: 60%;
+}
+.nav .current-item {
+  background-color: #54BAB9;
+  color: white;
+}
+.nav .add {
+  background-color: #54BAB9;
+  color: white;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  text-align: center;
+}
+.note p {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.note .delete {
+  width: 40%;
+  border-radius: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  color: white;
+  background-color: #54BAB9;
+  font-family: "Nunito", sans-serif;
+}
+
+.login {
+  background-color: #F7ECDE;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+  width: 50%;
+}
+.login input {
+  margin-bottom: 30px;
+}
+.login .description {
+  height: 150px;
+}
+.login button {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+  height: 30px;
+  color: white;
+  background-color: #54BAB9;
+  font-family: "Nunito", sans-serif;
+  border-radius: 20px;
+}
+.login .discard {
+  background-color: red;
+}
+
+.sign-up {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+  width: 50%;
+  border-radius: 20px;
+}
+.sign-up input {
+  margin-bottom: 30px;
+}
+.sign-up .description {
+  height: 150px;
+}
+.sign-up button {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+  height: 30px;
+  color: white;
+  background-color: #54BAB9;
+  font-family: "Nunito", sans-serif;
+  border-radius: 20px;
+}
+.sign-up .discard {
+  background-color: red;
+}
+
+.main1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.main1 h1 {
+  color: #54BAB9;
+}
+
+.main2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+  font-family: "Nunito", sans-serif;
+  margin-top: 100px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+/*# sourceMappingURL=style.css.map */

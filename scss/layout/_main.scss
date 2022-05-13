@@ -1,0 +1,23 @@
+@import '../components/note';
+@import'../components/login';
+@import'../components/signin';
+.main1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+    & h1 {
+        color: #54BAB9;
+    }
+}
+
+.main2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: auto;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 100px;
+    border-radius: 20px;
+    background-color: white;
+}

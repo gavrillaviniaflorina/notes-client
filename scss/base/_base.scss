@@ -1,0 +1,16 @@
+.body {
+    box-sizing: border-box;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+
+.container {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 100px;
+    background-color: #F7ECDE;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+}

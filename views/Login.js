@@ -29,7 +29,11 @@ class Login {
         <label>Password</label>
         <input class="password-login">
 
+        <p class="invalid">Invalid email or password</p>
+
         <button class="login-btn">Log in</button>
+
+        
 
     </fieldset>
 
@@ -48,39 +52,58 @@ class Login {
 
         <button> Sign in</button>
 
+       
+
 
     </fieldset>`;
+
+
         this.container.appendChild(main);
+
     }
+
+
 
     handleLogin = async(e) => {
 
-        let email = document.querySelector(".email-login").value;
 
-        let password = document.querySelector(".password-login").value;
+        let email1 = document.querySelector(".email-login").value;
+
+        let password1 = document.querySelector(".password-login").value;
 
         let person = {
-            "email": email,
-            "password": password
+            email: email1,
+            password: password1
         }
 
 
-        try {
-            let response = await this.api.validPerson(person);
 
-            if (response.status != 400) {
-                new Home();
-            }
-            // else {
+        let response = await this.api.validPerson(person);
 
-            //     throw new Error(response.message);
 
-            // }
-        } catch (e) {
 
-            this.handleInvalidEmailOrPassword(e.message);
+        if (response.status != 400) {
+
+            new Home(response.id);
+
+        } else {
+            let email = document.querySelector(".email-login");
+
+            email.classList.add("error");
+
+            email.value = response.message;
+
+            let password = document.querySelector(".password-login");
+
+            password.classList.add("error");
+
+            password.value = response.message;
+
 
         }
+
+
+
 
     }
 
@@ -97,6 +120,9 @@ class Login {
 
         login.appendChild(error);
     }
+
+
+
 
 
 }

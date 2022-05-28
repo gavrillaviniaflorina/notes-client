@@ -1,7 +1,7 @@
 .note {
     display: flex;
     flex-direction: column;
-    background-color: whitesmoke;
+    background-color: #edf2fb;
     border-radius: 20px;
     text-align: center;
     & p {
@@ -13,8 +13,21 @@
         border-radius: 20px;
         margin: auto;
         margin-bottom: 20px;
-        color: white;
-        background-color: #54BAB9;
+        color: #abc4ff;
+        font-weight: 700;
+        border-color: #abc4ff;
+        background-color: white;
+        font-family: 'Nunito', sans-serif;
+    }
+    & .edit {
+        width: 40%;
+        border-radius: 20px;
+        margin: auto;
+        margin-bottom: 20px;
+        color: #abc4ff;
+        border-color: #abc4ff;
+        font-weight: 700;
+        background-color: white;
         font-family: 'Nunito', sans-serif;
     }
 }

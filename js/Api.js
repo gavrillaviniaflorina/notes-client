@@ -21,23 +21,59 @@ export default class Data {
         return fetch(url, options);
     }
 
+    async getNotesOfAPerson(personId) {
+
+        const response = await this.api(`/api/v1/notes/allNotesOfAPerson/${personId}`);
+        return response.json();
+    }
+
     async notes() {
         const response = await this.api("/api/v1/notes");
         return response.json();
     }
 
-    // async addNote(note) {
-    //     const response = await this.api("", "POST", note);
-    // }
+
+
+    async addNote(note) {
+        const response = await this.api("/api/v1/persons/addNote", "POST", note);
+    }
 
     async deleteNote(id) {
-        await this.api(`/api/v1/persons/deleteNote/${id}`);
+        await this.api(`/api/v1/persons/deleteNote/${id}`, 'DELETE');
     }
 
-    async validPerson(loginDto) {
-        const response = await this.api(`/api/v1/persons/login`, "POST", loginDto);
+    async validPerson(person) {
+
+        const response = await this.api(`/api/v1/persons/login`, "POST", person);
+
+        return response.json();
+
+    }
+
+    async updateNote(note) {
+        await this.api(`/api/v1/notes/update`, 'PUT', note);
+    }
+
+    async getIdOfActualPerson(person) {
+        await this.api(`/api/v1/persons/getPersonId`, 'POST', person);
+    }
+
+    async ascending(personId) {
+        const response = await this.api(`/api/v1/notes/ascending/${personId}`);
         return response.json();
     }
+
+    async descending(personId) {
+        const response = await this.api(`/api/v1/notes/descending/${personId}`);
+        return response.json();
+    }
+
+    async alphabetical(personId) {
+        const response = await this.api(`/api/v1/notes/alphabetical/${personId}`);
+        return response.json();
+    }
+
+
 
 
 }

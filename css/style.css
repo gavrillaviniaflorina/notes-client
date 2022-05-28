@@ -10,7 +10,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 100px 1fr;
   grid-gap: 100px;
-  background-color: #F7ECDE;
+  background-color: white;
   width: 100%;
   font-family: "Nunito", sans-serif;
 }
@@ -25,7 +25,7 @@
 .profile .member {
   width: 40px;
   height: 40px;
-  fill: #54BAB9;
+  fill: #abc4ff;
 }
 
 .nav {
@@ -35,9 +35,9 @@
   align-items: center;
   list-style: none;
   border-radius: 20px;
-  background-color: white;
+  background-color: #d7e3fc;
   height: 100%;
-  color: #54BAB9;
+  color: white;
   width: 90%;
   margin: auto;
   margin-top: 20px;
@@ -55,13 +55,14 @@
   border-radius: 10px;
   width: 10%;
   height: 60%;
+  font-weight: 700;
 }
 .nav .current-item {
-  background-color: #54BAB9;
+  background-color: #abc4ff;
   color: white;
 }
 .nav .add {
-  background-color: #54BAB9;
+  background-color: #abc4ff;
   color: white;
   text-align: center;
   margin-right: 20px;
@@ -70,7 +71,7 @@
 .note {
   display: flex;
   flex-direction: column;
-  background-color: whitesmoke;
+  background-color: #edf2fb;
   border-radius: 20px;
   text-align: center;
 }
@@ -83,21 +84,37 @@
   border-radius: 20px;
   margin: auto;
   margin-bottom: 20px;
-  color: white;
-  background-color: #54BAB9;
+  color: #abc4ff;
+  font-weight: 700;
+  border-color: #abc4ff;
+  background-color: white;
+  font-family: "Nunito", sans-serif;
+}
+.note .edit {
+  width: 40%;
+  border-radius: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  color: #abc4ff;
+  border-color: #abc4ff;
+  font-weight: 700;
+  background-color: white;
   font-family: "Nunito", sans-serif;
 }
 
 .login {
-  background-color: #F7ECDE;
+  background-color: #abc4ff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: none;
+  border-radius: 20px;
   width: 50%;
 }
 .login input {
   margin-bottom: 30px;
+  border: none;
+  border-radius: 10px;
 }
 .login .description {
   height: 150px;
@@ -107,17 +124,24 @@
   margin: auto;
   margin-bottom: 20px;
   height: 30px;
-  color: white;
-  background-color: #54BAB9;
+  color: #abc4ff;
+  background-color: white;
   font-family: "Nunito", sans-serif;
   border-radius: 20px;
 }
 .login .discard {
   background-color: red;
 }
+.login .error {
+  border: 2px solid red;
+  color: red;
+}
+.login .invalid {
+  color: #abc4ff;
+}
 
 .sign-up {
-  background-color: white;
+  background-color: #d7e3fc;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -127,6 +151,8 @@
 }
 .sign-up input {
   margin-bottom: 30px;
+  border-radius: 10px;
+  border: none;
 }
 .sign-up .description {
   height: 150px;
@@ -136,8 +162,8 @@
   margin: auto;
   margin-bottom: 20px;
   height: 30px;
-  color: white;
-  background-color: #54BAB9;
+  color: #ccdbfd;
+  background-color: white;
   font-family: "Nunito", sans-serif;
   border-radius: 20px;
 }
@@ -146,13 +172,14 @@
 }
 
 .main1 {
+  margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 20px;
 }
 .main1 h1 {
-  color: #54BAB9;
+  color: #abc4ff;
 }
 
 .main2 {
@@ -164,6 +191,109 @@
   margin-top: 100px;
   border-radius: 20px;
   background-color: white;
+}
+
+.main3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(87, 83, 83, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: none;
+  border: none;
+}
+.main3 .curent-note {
+  border-color: #edf2fb;
+  margin-top: 5px;
+  width: 50%;
+  height: 50%;
+  background-color: #d7e3fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+}
+.main3 .curent-note input {
+  margin-top: 3px;
+  height: 30px;
+  width: 50%;
+  border-radius: 10px;
+  border-color: #abc4ff;
+}
+.main3 .curent-note .updated-text {
+  height: 200px;
+}
+.main3 .curent-note .buttons-edit {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+.main3 .curent-note button {
+  border-radius: 20px;
+  color: #abc4ff;
+  border-color: #abc4ff;
+  background-color: #edf2fb;
+  width: 30%;
+  height: 60px;
+}
+
+.main4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(87, 83, 83, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: none;
+  border: none;
+}
+.main4 .new-note {
+  width: 50%;
+  height: 50%;
+  background-color: #d7e3fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+}
+.main4 .new-note input {
+  margin-top: 3px;
+  height: 30px;
+  width: 50%;
+  border-radius: 10px;
+  border-color: #abc4ff;
+}
+.main4 .new-note .new-text {
+  height: 200px;
+}
+.main4 .new-note .buttons-add {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+.main4 .new-note button {
+  border-radius: 20px;
+  color: #abc4ff;
+  border-color: #abc4ff;
+  background-color: #edf2fb;
+  width: 40%;
+  height: 60px;
+  margin-bottom: 10px;
+}
+.main4 .new-note label {
+  align-self: center;
 }
 
 /*# sourceMappingURL=style.css.map */

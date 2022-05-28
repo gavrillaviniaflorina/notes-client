@@ -1,5 +1,5 @@
 .sign-up {
-    background-color: white;
+    background-color: #d7e3fc;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,6 +8,8 @@
     border-radius: 20px;
     & input {
         margin-bottom: 30px;
+        border-radius: 10px;
+        border: none;
     }
     & .description {
         height: 150px;
@@ -17,8 +19,8 @@
         margin: auto;
         margin-bottom: 20px;
         height: 30px;
-        color: white;
-        background-color: #54BAB9;
+        color: #ccdbfd;
+        background-color: white;
         font-family: 'Nunito', sans-serif;
         border-radius: 20px;
     }

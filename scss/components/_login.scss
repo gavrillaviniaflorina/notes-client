@@ -1,12 +1,15 @@
 .login {
-    background-color: #F7ECDE;
+    background-color: #abc4ff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border: none;
+    border-radius: 20px;
     width: 50%;
     & input {
         margin-bottom: 30px;
+        border: none;
+        border-radius: 10px;
     }
     & .description {
         height: 150px;
@@ -16,12 +19,19 @@
         margin: auto;
         margin-bottom: 20px;
         height: 30px;
-        color: white;
-        background-color: #54BAB9;
+        color: #abc4ff;
+        background-color: white;
         font-family: 'Nunito', sans-serif;
         border-radius: 20px;
     }
     & .discard {
         background-color: red;
+    }
+    & .error {
+        border: 2px solid red;
+        color: red;
+    }
+    & .invalid {
+        color: #abc4ff;
     }
 }

@@ -1,15 +1,36 @@
 import Data from "../js/Api.js"
 
+
 class Home {
 
 
-    constructor() {
+    constructor(id) {
 
+        this.id = id;
         this.api = new Data();
         this.container = document.querySelector(".container");
         this.container.innerHTML = "";
         this.createHeaderAndMain();
         this.appendCards();
+
+        this.main1 = document.querySelector(".main1");
+        this.main1.addEventListener("click", this.deleteCard);
+
+        this.main1.addEventListener("click", this.editCard);
+
+        this.ascendingBtn = document.querySelector(".ascending");
+        this.ascendingBtn.addEventListener("click", this.ascending);
+
+        this.descendingBtn = document.querySelector(".descending");
+        this.descendingBtn.addEventListener("click", this.descending);
+
+        this.alphBtn = document.querySelector(".alph");
+        this.alphBtn.addEventListener("click", this.alph);
+
+        this.addBtn = document.querySelector(".add");
+        this.addBtn.addEventListener("click", this.addNote);
+
+
 
     }
 
@@ -29,13 +50,13 @@ class Home {
             <li class="nav-item current-item">
                 All Notes
             </li>
-            <li class="nav-item">
+            <li class="nav-item ascending">
                 Sort ascending
             </li>
-            <li class="nav-item">
+            <li class="nav-item descending">
                 Sort descending
             </li>
-            <li class="nav-item">
+            <li class="nav-item alph">
                 Alphabetical
             </li>
         </ul>
@@ -62,20 +83,28 @@ class Home {
         card.classList = "note";
 
         card.innerHTML = `
-        <h1>${obj.title}</h1>
+        <h1  >${obj.title}</h1>
         <h3>${obj.date}</h3>
         <p>${obj.text}</p>
         <button class="delete">Delete</button>
+        <button class="edit">Edit</button>
         `
 
+        card.id = `id-${obj.id}`;
         return card;
+    }
+
+
+    getTheId = (id) => {
+
+        return id.split('-')[1];
     }
 
     appendCards = async() => {
 
         let main = document.querySelector(".main1");
 
-        let data = await this.api.notes();
+        let data = await this.api.getNotesOfAPerson(this.id);
 
         for (let i = 0; i < data.length; i++) {
 
@@ -84,6 +113,244 @@ class Home {
 
         }
     }
+
+    ascending = async() => {
+
+        let old = document.querySelector(".current-item ");
+        old.classList.remove("current-item");
+
+        let ascendingB = document.querySelector(".ascending");
+        ascendingB.classList.add("current-item");
+
+        let main = document.querySelector(".main1");
+
+        let data = await this.api.ascending(this.id);
+        main.innerHTML = ``;
+        for (let i = 0; i < data.length; i++) {
+
+
+            main.appendChild(this.createCard(data[i]));
+
+        }
+
+    }
+
+    descending = async() => {
+
+        let old = document.querySelector(".current-item ");
+        old.classList.remove("current-item");
+
+        let descendingB = document.querySelector(".descending");
+        descendingB.classList.add("current-item");
+
+        let main = document.querySelector(".main1");
+
+        let data = await this.api.descending(this.id);
+        main.innerHTML = ``;
+        for (let i = 0; i < data.length; i++) {
+
+
+            main.appendChild(this.createCard(data[i]));
+
+        }
+
+    }
+
+    alph = async() => {
+
+        let old = document.querySelector(".current-item ");
+        old.classList.remove("current-item");
+
+        let alphB = document.querySelector(".alph");
+        alphB.classList.add("current-item");
+
+        let main = document.querySelector(".main1");
+
+        let data = await this.api.alphabetical(this.id);
+        main.innerHTML = ``;
+        for (let i = 0; i < data.length; i++) {
+
+
+            main.appendChild(this.createCard(data[i]));
+
+        }
+
+    }
+
+    deleteCard = async(e) => {
+
+
+        let target = e.target;
+
+
+        if (target.classList == "delete") {
+            let parent = target.parentNode;
+
+            console.log(parent);
+            let id = this.getTheId(parent.id);
+
+            console.log(id);
+            await this.api.deleteNote(id);
+
+            let main1 = document.querySelector(".main1");
+            main1.innerHTML = ``;
+            this.appendCards();
+
+
+
+        }
+
+
+
+
+    }
+
+    addNote = (e) => {
+
+        let main4 = document.createElement("main");
+        main4.classList = "main4";
+        main4.innerHTML = `
+
+        <section class="new-note">
+
+        <label>Title</label>
+        <input class="new-title">
+        <label>Date</label>
+        <input class="new-date">
+        <label>Text</label>
+        <input class="new-text">
+
+
+
+        <section class="buttons-add">
+            <button class="save2">Save note</button>
+            <button class="cancel2">Cancel</button>
+        </section>
+
+        </section>
+        `
+
+        this.container.appendChild(main4);
+        this.save = document.querySelector(".save2");
+        this.save.addEventListener("click", this.handleSaveNote);
+
+        let cancel = document.querySelector(".cancel2");
+        cancel.addEventListener("click", this.handleCancelFromSave);
+
+
+    }
+
+    handleSaveNote = async() => {
+
+        let title1 = document.querySelector(".new-title").value;
+        let date1 = document.querySelector(".new-date").value;
+        let text1 = document.querySelector(".new-text").value;
+
+
+        let main4 = document.querySelector(".main4");
+
+
+        let newNote = {
+
+            title: title1,
+            date: date1,
+            text: text1,
+            idPerson: this.id
+        }
+
+        await this.api.addNote(newNote);
+        this.container.removeChild(main4);
+
+
+    }
+
+    handleCancelFromSave = () => {
+
+        let main4 = document.querySelector(".main4");
+        this.container.removeChild(main4);
+
+    }
+
+    editCard = (e) => {
+
+        if (e.target.classList == "edit") {
+
+
+
+            let card = e.target.parentNode;
+
+
+            let title = card.firstElementChild;
+
+            let date = title.nextElementSibling
+
+            let text = date.nextElementSibling;
+
+
+            let main3 = document.createElement("main");
+            main3.classList = "main3";
+            main3.innerHTML = `
+
+            <section class="curent-note" id="${card.id}">
+            <input class="updated-title" value="${title.textContent}">
+            <input class="updated-date" value="${date.textContent}">
+            <input class="updated-text" value="${text.textContent}">
+
+
+
+            <section class="buttons-edit">
+                <button class="save1">Save changes</button>
+                <button>Delete note</button>
+                <button class="cancel">Cancel</button>
+            </section>
+
+            </section>
+            `
+
+            this.container.appendChild(main3);
+            this.save = document.querySelector(".save1");
+            this.save.addEventListener("click", this.handleSaveChanges);
+
+            let cancel = document.querySelector(".cancel");
+            cancel.addEventListener("click", this.handleCancel);
+
+        }
+    }
+
+    handleSaveChanges = async() => {
+
+        let title1 = document.querySelector(".updated-title").value;
+        let date1 = document.querySelector(".updated-date").value;
+        let text1 = document.querySelector(".updated-text").value;
+        let note = document.querySelector(".curent-note");
+        let id1 = this.getTheId(note.id);
+
+        let main3 = document.querySelector(".main3");
+
+
+        let updated = {
+            id: id1,
+            title: title1,
+            date: date1,
+            text: text1
+        }
+
+        await this.api.updateNote(updated);
+        this.container.removeChild(main3);
+
+
+    }
+
+    handleCancel = () => {
+
+        let main3 = document.querySelector(".main3");
+        this.container.removeChild(main3);
+
+    }
+
+
+
+
 }
 
 export default Home;

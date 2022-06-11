@@ -1,5 +1,11 @@
-import Home from "./Home.js";
-import Login from "./Login.js";
+import Data from "../js/Api.js";
 
-//let home = new Home();
-let login = new Login();
+// let login = new Login();
+
+
+// //  window.localStorage.setItem("personId", "");
+
+let data = new Data();
+
+
+data.login("lavinia.gavril@mycode.edu", "12345");

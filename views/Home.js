@@ -1,4 +1,5 @@
 import Data from "../js/Api.js"
+import Login from "./Login.js";
 
 
 class Home {
@@ -6,12 +7,16 @@ class Home {
 
     constructor(id) {
 
+
         this.id = id;
+        localStorage.setItem("personId", this.id);
+        this.currentPage = 0;
         this.api = new Data();
         this.container = document.querySelector(".container");
         this.container.innerHTML = "";
         this.createHeaderAndMain();
-        this.appendCards();
+        this.appendCardsForAPage();
+        this.appendButtons();
 
         this.main1 = document.querySelector(".main1");
         this.main1.addEventListener("click", this.deleteCard);
@@ -30,6 +35,9 @@ class Home {
         this.addBtn = document.querySelector(".add");
         this.addBtn.addEventListener("click", this.addNote);
 
+        this.pageButtons = document.querySelector(".page-buttons");
+        this.pageButtons.addEventListener("click", this.changePage);
+
 
 
     }
@@ -47,24 +55,37 @@ class Home {
     </section>
         <ul class="nav">
         <ul class="sort">
-            <li class="nav-item current-item">
-                All Notes
-            </li>
-            <li class="nav-item ascending">
+            <button class="nav-item current-item  navbar-toggler   type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"">
+          
+            All Notes
+            </button>
+            <button class="nav-item ascending navbar-toggler  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation""">
                 Sort ascending
-            </li>
-            <li class="nav-item descending">
+            </button>
+            <button class="nav-item descending navbar-toggler  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation""">
                 Sort descending
-            </li>
-            <li class="nav-item alph">
+            </button>
+            <button class="nav-item alph navbar-toggler  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation""">
                 Alphabetical
-            </li>
+            </button>
         </ul>
-        <li class="nav-item add">
+        <button class="nav-item add">
             Add Notes
-        </li>
+        </button>
 
     </ul>`
+
+
+        let pageButtons = document.createElement("section");
+        pageButtons.innerHTML = ` 
+
+        
+         
+         `
+
+        pageButtons.classList = "page-buttons";
+
+
 
         let main = document.createElement("main");
         main.classList = "main1";
@@ -72,10 +93,68 @@ class Home {
 
         this.container.appendChild(header);
         this.container.appendChild(main);
+        this.container.appendChild(pageButtons);
 
 
 
     }
+
+    createPageButton = (number) => {
+        let btn = document.createElement("button");
+
+        btn.type = "button";
+
+        btn.classList = "page-button";
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+
+        btn.innerHTML = `${number}`;
+        return btn;
+
+
+
+    }
+
+    changePage = (e) => {
+
+        if (e.classList = "page-button") {
+            let target = e.target;
+            this.currentPage = target.textContent;
+            this.appendCardsForAPage();
+
+
+        }
+
+
+
+    }
+
+    appendButtons = async() => {
+
+        let number = await this.calculateButtons();
+        let buttonsSection = document.querySelector(".page-buttons");
+        for (let i = 0; i < number; i++) {
+
+            let btn = this.createPageButton(i + 1);
+
+            buttonsSection.appendChild(btn);
+
+
+        }
+
+    }
+
+    calculateButtons = async() => {
+
+        let cards = await this.api.getNotesOfAPerson(this.id);
+        let number = cards.length;
+
+
+        return Math.floor(number / 6);
+
+    }
+
+
 
     createCard = (obj) => {
 
@@ -106,12 +185,32 @@ class Home {
 
         let data = await this.api.getNotesOfAPerson(this.id);
 
-        for (let i = 0; i < data.length; i++) {
+        let cards = await this.calculateButtons();
+
+
+
+        for (let i = this.currentPage; i < this.currentPage + cards - 1; i++) {
 
 
             main.appendChild(this.createCard(data[i]));
 
         }
+    }
+
+    appendCardsForAPage = async() => {
+
+        let main = document.querySelector(".main1");
+
+        main.innerHTML = ``;
+
+        let data = await this.api.getNotesOfAPerson(this.id);
+
+        let page = data.slice(this.currentPage * 6 + 1, this.currentPage * 6 + 7);
+
+        for (let i = 0; i < page.length; i++) {
+            main.appendChild(this.createCard(page[i]));
+        }
+
     }
 
     ascending = async() => {
@@ -191,11 +290,9 @@ class Home {
 
             console.log(id);
             await this.api.deleteNote(id);
-
             let main1 = document.querySelector(".main1");
             main1.innerHTML = ``;
             this.appendCards();
-
 
 
         }
@@ -216,7 +313,7 @@ class Home {
         <label>Title</label>
         <input class="new-title">
         <label>Date</label>
-        <input class="new-date">
+        <input type="date">
         <label>Text</label>
         <input class="new-text">
 
@@ -307,6 +404,7 @@ class Home {
             </section>
             `
 
+
             this.container.appendChild(main3);
             this.save = document.querySelector(".save1");
             this.save.addEventListener("click", this.handleSaveChanges);
@@ -339,6 +437,9 @@ class Home {
         this.container.removeChild(main3);
 
 
+        location.reload();
+
+
     }
 
     handleCancel = () => {
@@ -347,6 +448,13 @@ class Home {
         this.container.removeChild(main3);
 
     }
+
+
+
+
+
+
+
 
 
 

@@ -5,11 +5,19 @@
     justify-content: space-between;
     border: none;
     border-radius: 20px;
-    width: 50%;
+    width: 45%;
+    & h3 {
+        margin-left: 10px;
+    }
     & input {
-        margin-bottom: 30px;
+        width: 90%;
+        margin: auto;
         border: none;
+        margin-bottom: 30px;
         border-radius: 10px;
+    }
+    & label {
+        margin-left: 10px;
     }
     & .description {
         height: 150px;

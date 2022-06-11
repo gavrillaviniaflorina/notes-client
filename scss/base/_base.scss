@@ -1,6 +1,5 @@
 .body {
     box-sizing: border-box;
-    width: 100%;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -8,7 +7,7 @@
     margin: auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 100px 1fr 50px;
     grid-gap: 100px;
     background-color: white;
     width: 100%;

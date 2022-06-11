@@ -6,13 +6,24 @@ class Login {
     constructor() {
 
 
-        this.api = new Data();
-        this.container = document.querySelector(".container");
-        this.container.innerHTML = "";
-        this.createMain();
+        console.log(localStorage.getItem("personId") === "");
 
-        this.login = document.querySelector(".login-btn");
-        this.login.addEventListener("click", this.handleLogin);
+        if (localStorage.getItem("personId") != "") {
+            new Home(localStorage.getItem("personId"));
+        } else {
+
+
+            // localStorage.removeItem("personId");
+
+
+            this.api = new Data();
+            this.container = document.querySelector(".container");
+            this.container.innerHTML = "";
+            this.createMain();
+
+            this.login = document.querySelector(".login-btn");
+            this.login.addEventListener("click", this.handleLogin);
+        }
     }
 
 
@@ -31,7 +42,7 @@ class Login {
 
         <p class="invalid">Invalid email or password</p>
 
-        <button class="login-btn">Log in</button>
+        <button class="login-btn btn-primary btn">Log in</button>
 
         
 
@@ -50,7 +61,7 @@ class Login {
         <label>Password</label>
         <input>
 
-        <button> Sign in</button>
+        <button   class=" btn-primary btn"> Sign in</button>
 
        
 
@@ -80,9 +91,10 @@ class Login {
 
         let response = await this.api.validPerson(person);
 
-
+        console.log(response);
 
         if (response.status != 400) {
+
 
             new Home(response.id);
 

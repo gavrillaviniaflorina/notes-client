@@ -1,17 +1,26 @@
 export default class Data {
 
 
-    api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
+    api(path, method = 'GET', body = null, requiresAuth = false, token = null) {
         const url = "http://localhost:8080" + path;
-
         const options = {
             method,
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
+                'X-Requested-With': 'XMLHttpRequest',
+                "Access-Control-Expose-Headers": "Authorization",
+                Accept: 'API-KEY',
+                "Set-Cookie": 'token'
 
             },
+            mode: 'no-cors',
+            credentials: 'same-origin'
+
+
 
         };
+
+
 
         if (body !== null) {
             options.body = JSON.stringify(body);
@@ -28,7 +37,8 @@ export default class Data {
     }
 
     async notes() {
-        const response = await this.api("/api/v1/notes");
+
+        const response = await this.api("/api/v1/notes", "GET");
         return response.json();
     }
 
@@ -47,6 +57,8 @@ export default class Data {
         const response = await this.api(`/api/v1/persons/login`, "POST", person);
 
         return response.json();
+
+
 
     }
 
@@ -73,6 +85,20 @@ export default class Data {
         return response.json();
     }
 
+
+    async login(username1, password1) {
+        let person = {
+            username: username1,
+            password: password1
+        }
+        const response = await this.api("/login", "POST", person);
+
+
+
+        console.log(response.headers.authorization);
+
+
+    }
 
 
 

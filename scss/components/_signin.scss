@@ -4,12 +4,20 @@
     flex-direction: column;
     justify-content: space-between;
     border: none;
-    width: 50%;
+    width: 45%;
     border-radius: 20px;
+    & h3 {
+        margin-left: 10px;
+    }
     & input {
+        width: 90%;
+        margin: auto;
         margin-bottom: 30px;
         border-radius: 10px;
         border: none;
+    }
+    & label {
+        margin-left: 10px;
     }
     & .description {
         height: 150px;
